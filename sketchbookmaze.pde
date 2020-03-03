@@ -57,29 +57,61 @@ void draw() {
   strafeDir = xzDirection.copy();
   strafeDir.rotate(PI/2);
 
-  int mapX = 0, mapY = 0;
-  //read in a pixel
-  color pixel = map.get(mapX, mapY);
+  //int mapX = 0, mapY = 0;
+  ////read in a pixel
+  //color pixel = map.get(mapX, mapY);
 
-  while (pixel == white) {
-    if (wkey) {
-      lx = lx + xzDirection.x;
-      lz = lz + xzDirection.y;
-    }
-    if (skey) {
-      lx = lx - xzDirection.x;
-      lz = lz - xzDirection.y;
-    }
-    if (akey) {
-      lx = lx - strafeDir.x;
-      lz = lz - strafeDir.y;
-    }
-    if (dkey) { 
-      lx = lx + strafeDir.x;
-      lz = lz + strafeDir.y;
-    }
+  //while (pixel == white) {
+  //  if (wkey) {
+  //    lx = lx + xzDirection.x;
+  //    lz = lz + xzDirection.y;
+  //  }
+  //  if (skey) {
+  //    lx = lx - xzDirection.x;
+  //    lz = lz - xzDirection.y;
+  //  }
+  //  if (akey) {
+  //    lx = lx - strafeDir.x;
+  //    lz = lz - strafeDir.y;
+  //  }
+  //  if (dkey) { 
+  //    lx = lx + strafeDir.x;
+  //    lz = lz + strafeDir.y;
+  //  }
+  //}
+  
+  println(lz);
+
+  //movement
+  if (wkey) {
+    lx = lx + xzDirection.x;
+    lz = lz + xzDirection.y;
+  }
+  if (skey) {
+    lx = lx - xzDirection.x;
+    lz = lz - xzDirection.y;
+  }
+  if (akey) {
+    lx = lx - strafeDir.x;
+    lz = lz - strafeDir.y;
+  }
+  if (dkey) { 
+    lx = lx + strafeDir.x;
+    lz = lz + strafeDir.y;
   }
 
+  //collisions overall
+  //if (dist(cameraLocationX, cameraLocationZ, dirtBoxX, dirtBoxZ) < dirtboxsize/2)
+  
+  //side specific collsions??
+  //as camera lx decreases check for collisions with X+ faces
+  
+  //as camera lx increases check for collisions with X- faces
+  
+  //as camera lz decreases check for collisions with Z+ faces
+  
+  //as camera lz increases check for collisions with Z- faces
+  
   drawSnow();
   drawRipple();
   //drawBullets();
