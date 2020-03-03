@@ -10,8 +10,8 @@ void drawMap() {
     worldZ = mapY * bs;
 
     if (pixel == black) {
-      dirtBox(dB, worldX, 50, worldZ, bs/2);
-      dirtBox(dB, worldX, -50, worldZ, bs/2);
+      new dirtBox(dB, worldX, 50, worldZ, bs/2);
+      new dirtBox(dB, worldX, -50, worldZ, bs/2);
       grassyBox(dT, dS, dB, worldX, -150, worldZ, bs/2);
     }
 

@@ -1,6 +1,7 @@
 ArrayList<Bullet> bullets;
 ArrayList<Snow> snowflakes;
 ArrayList<Ripple> ripples;
+ArrayList<dirtBox> dirtboxes;
 
 //keyboard interaction
 boolean up, down, left, right;
@@ -24,7 +25,7 @@ color white = #FFFFFF;
 PImage map;
 
 //textures
-PImage qblock, dT, dS, dB;
+PImage dT, dS, dB;
 
 void setup() {
   size(800, 800, P3D);
@@ -39,6 +40,7 @@ void setup() {
   bullets = new ArrayList<Bullet>();
   snowflakes = new ArrayList<Snow>();
   ripples = new ArrayList<Ripple>();
+  dirtboxes = new ArrayList<dirtBox>();
 }
 
 void draw() {
@@ -79,7 +81,7 @@ void draw() {
   //    lz = lz + strafeDir.y;
   //  }
   //}
-  
+
   println(lz);
 
   //movement
@@ -102,16 +104,58 @@ void draw() {
 
   //collisions overall
   //if (dist(cameraLocationX, cameraLocationZ, dirtBoxX, dirtBoxZ) < dirtboxsize/2)
-  
+  //if (dist(lx, lz, worldX, worldZ) > bs/2) {
+  //  if (wkey) {
+  //    lx = lx + xzDirection.x;
+  //    lz = lz + xzDirection.y;
+  //  }
+  //  if (skey) {
+  //    lx = lx - xzDirection.x;
+  //    lz = lz - xzDirection.y;
+  //  }
+  //  if (akey) {
+  //    lx = lx - strafeDir.x;
+  //    lz = lz - strafeDir.y;
+  //  }
+  //  if (dkey) { 
+  //    lx = lx + strafeDir.x;
+  //    lz = lz + strafeDir.y;
+  //  }
+  //}
+
+  int i = 0;
+  while (i < dirtboxes.size()) {
+    dirtBox myObj = dirtboxes.get(i);
+    if (myObj instanceof dirtBox) {
+      if ((dist(lx, lz, location.x, location.z) > bs/2) && wkey) {
+        lx = lx + xzDirection.x;
+        lz = lz + xzDirection.y;
+      }
+      if ((dist(lx, lz, location.x, location.z) > bs/2) && skey) {
+        lx = lx - xzDirection.x;
+        lz = lz - xzDirection.y;
+      }
+      if ((dist(lx, lz, location.x, location.z) > bs/2) && akey) {
+        lx = lx - strafeDir.x;
+        lz = lz - strafeDir.y;
+      }
+      if ((dist(lx, lz, location.x, location.z) > bs/2) && dkey) { 
+        lx = lx + strafeDir.x;
+        lz = lz + strafeDir.y;
+      }
+    }
+    i++;
+  }
+
   //side specific collsions??
   //as camera lx decreases check for collisions with X+ faces
-  
+
   //as camera lx increases check for collisions with X- faces
-  
+
   //as camera lz decreases check for collisions with Z+ faces
-  
+
   //as camera lz increases check for collisions with Z- faces
-  
+
   drawSnow();
   drawRipple();
   //drawBullets();
