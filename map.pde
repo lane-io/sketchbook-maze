@@ -2,7 +2,7 @@ void drawMap() {
   int mapX = 0, mapY = 0;
   int worldX = 0, worldZ = 0;
 
-  while ( mapY < map.height ) {
+  while (mapY < map.height) {
     //read in a pixel
     color pixel = map.get(mapX, mapY);
 
@@ -10,8 +10,8 @@ void drawMap() {
     worldZ = mapY * bs;
 
     if (pixel == black) {
-      new dirtBox(dB, worldX, 50, worldZ, bs/2);
-      new dirtBox(dB, worldX, -50, worldZ, bs/2);
+      dirtBox(dB, worldX, 50, worldZ, bs/2);
+      dirtBox(dB, worldX, -50, worldZ, bs/2);
       grassyBox(dT, dS, dB, worldX, -150, worldZ, bs/2);
     }
 

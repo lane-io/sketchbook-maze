@@ -1,7 +1,6 @@
 ArrayList<Bullet> bullets;
 ArrayList<Snow> snowflakes;
 ArrayList<Ripple> ripples;
-ArrayList<dirtBox> dirtboxes;
 
 //keyboard interaction
 boolean up, down, left, right;
@@ -25,7 +24,7 @@ color white = #FFFFFF;
 PImage map;
 
 //textures
-PImage dT, dS, dB;
+PImage qblock, dT, dS, dB;
 
 void setup() {
   size(800, 800, P3D);
@@ -40,7 +39,6 @@ void setup() {
   bullets = new ArrayList<Bullet>();
   snowflakes = new ArrayList<Snow>();
   ripples = new ArrayList<Ripple>();
-  dirtboxes = new ArrayList<dirtBox>();
 }
 
 void draw() {
@@ -53,109 +51,32 @@ void draw() {
   xzDirection.rotate(leftRightHeadAngle);
   xyDirection.rotate(upDownHeadAngle);
   leftRightHeadAngle = -(pmouseX - mouseX) * 0.01;
-  upDownHeadAngle    = (pmouseY - mouseY) * 0.01;
+  upDownHeadAngle = (pmouseY - mouseY) * 0.01;
 
   //headAngle = headAngle + 0.01;
   strafeDir = xzDirection.copy();
   strafeDir.rotate(PI/2);
 
-  //int mapX = 0, mapY = 0;
-  ////read in a pixel
-  //color pixel = map.get(mapX, mapY);
+println (lx, ly);
 
   //while (pixel == white) {
-  //  if (wkey) {
-  //    lx = lx + xzDirection.x;
-  //    lz = lz + xzDirection.y;
-  //  }
-  //  if (skey) {
-  //    lx = lx - xzDirection.x;
-  //    lz = lz - xzDirection.y;
-  //  }
-  //  if (akey) {
-  //    lx = lx - strafeDir.x;
-  //    lz = lz - strafeDir.y;
-  //  }
-  //  if (dkey) { 
-  //    lx = lx + strafeDir.x;
-  //    lz = lz + strafeDir.y;
-  //  }
-  //}
-
-  //movement
-  //if (wkey) {
-  //  lx = lx + xzDirection.x;
-  //  lz = lz + xzDirection.y;
-  //}
-  //if (skey) {
-  //  lx = lx - xzDirection.x;
-  //  lz = lz - xzDirection.y;
-  //}
-  //if (akey) {
-  //  lx = lx - strafeDir.x;
-  //  lz = lz - strafeDir.y;
-  //}
-  //if (dkey) { 
-  //  lx = lx + strafeDir.x;
-  //  lz = lz + strafeDir.y;
-  //}
-
-  //collisions overall
-  //if (dist(cameraLocationX, cameraLocationZ, dirtBoxX, dirtBoxZ) < dirtboxsize/2)
-  //if (dist(lx, lz, worldX, worldZ) > bs/2) {
-  //  if (wkey) {
-  //    lx = lx + xzDirection.x;
-  //    lz = lz + xzDirection.y;
-  //  }
-  //  if (skey) {
-  //    lx = lx - xzDirection.x;
-  //    lz = lz - xzDirection.y;
-  //  }
-  //  if (akey) {
-  //    lx = lx - strafeDir.x;
-  //    lz = lz - strafeDir.y;
-  //  }
-  //  if (dkey) { 
-  //    lx = lx + strafeDir.x;
-  //    lz = lz + strafeDir.y;
-  //  }
-  //}
-
-  int i = 0;
-  while (i < dirtboxes.size()) {
-    dirtBox myObj = dirtboxes.get(i);
-    if (myObj instanceof dirtBox) {
-
-      println(dist(lx, lz, location.x, location.z));
-
-      if ((dist(lx, lz, location.x, location.z) > bs/2) && wkey) {
-        lx = lx + xzDirection.x;
-        lz = lz + xzDirection.y;
-      }
-      if ((dist(lx, lz, location.x, location.z) > bs/2) && skey) {
-        lx = lx - xzDirection.x;
-        lz = lz - xzDirection.y;
-      }
-      if ((dist(lx, lz, location.x, location.z) > bs/2) && akey) {
-        lx = lx - strafeDir.x;
-        lz = lz - strafeDir.y;
-      }
-      if ((dist(lx, lz, location.x, location.z) > bs/2) && dkey) { 
-        lx = lx + strafeDir.x;
-        lz = lz + strafeDir.y;
-      }
-    }
-    i++;
+  if (wkey) {
+    lx = lx + xzDirection.x;
+    lz = lz + xzDirection.y;
   }
-
-  //side specific collsions??
-  //as camera lx decreases check for collisions with X+ faces
-
-  //as camera lx increases check for collisions with X- faces
-
-  //as camera lz decreases check for collisions with Z+ faces
-
-  //as camera lz increases check for collisions with Z- faces
+  if (skey) {
+    lx = lx - xzDirection.x;
+    lz = lz - xzDirection.y;
+  }
+  if (akey) {
+    lx = lx - strafeDir.x;
+    lz = lz - strafeDir.y;
+  }
+  if (dkey) { 
+    lx = lx + strafeDir.x;
+    lz = lz + strafeDir.y;
+  }
+  //}
 
   drawSnow();
   drawRipple();
