@@ -82,25 +82,23 @@ void draw() {
   //  }
   //}
 
-  println(lz);
-
   //movement
-  if (wkey) {
-    lx = lx + xzDirection.x;
-    lz = lz + xzDirection.y;
-  }
-  if (skey) {
-    lx = lx - xzDirection.x;
-    lz = lz - xzDirection.y;
-  }
-  if (akey) {
-    lx = lx - strafeDir.x;
-    lz = lz - strafeDir.y;
-  }
-  if (dkey) { 
-    lx = lx + strafeDir.x;
-    lz = lz + strafeDir.y;
-  }
+  //if (wkey) {
+  //  lx = lx + xzDirection.x;
+  //  lz = lz + xzDirection.y;
+  //}
+  //if (skey) {
+  //  lx = lx - xzDirection.x;
+  //  lz = lz - xzDirection.y;
+  //}
+  //if (akey) {
+  //  lx = lx - strafeDir.x;
+  //  lz = lz - strafeDir.y;
+  //}
+  //if (dkey) { 
+  //  lx = lx + strafeDir.x;
+  //  lz = lz + strafeDir.y;
+  //}
 
   //collisions overall
   //if (dist(cameraLocationX, cameraLocationZ, dirtBoxX, dirtBoxZ) < dirtboxsize/2)
@@ -127,6 +125,9 @@ void draw() {
   while (i < dirtboxes.size()) {
     dirtBox myObj = dirtboxes.get(i);
     if (myObj instanceof dirtBox) {
+
+      println(dist(lx, lz, location.x, location.z));
+
       if ((dist(lx, lz, location.x, location.z) > bs/2) && wkey) {
         lx = lx + xzDirection.x;
         lz = lz + xzDirection.y;
